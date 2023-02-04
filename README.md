@@ -21,3 +21,5 @@ download Your music and enjoy
 # Layout (Post-Search)
 
 ![Screenshot_20230204_131103](https://user-images.githubusercontent.com/86865554/216759563-1eebd2e2-87bc-4e6b-aeff-a8ff530ac70e.png)
+
+note: README to be updated soon
