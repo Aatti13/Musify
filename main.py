@@ -96,7 +96,7 @@ class MusicWindow:
                 self.download_now_label.config(text="Download Song:")
 
             except Exception as e:
-                messagebox.showerror("Musify", "STATUS: ERROR")  # Display Error Message
+                messagebox.showerror("Musify", f"STATUS: {e}")  # Display Error Message
 
 
         def download():
@@ -123,13 +123,13 @@ class MusicWindow:
                 p = YouTube(link)
                 audio = p.streams.get_by_itag(251)  # Searching for Stream by itag
                 first_download = audio
-                downloads_path = str(Path.home() / "Music")  # Getting path to Music Folder of Device
-                dir_file_path = fr"{downloads_path}\Downloaded"  # Create file path for download
+                downloads_path = str(Path.home() / "Downloads")  # Getting path to Music Folder of Device
+                dir_file_path = fr"{downloads_path}\Music Downloaded"  # Create file path for download
                 file_name = first_download.download(dir_file_path)  # To download the YouTube Audio
-                new_name = os.path.split(file_name)  # To Access File names :type: <tuple>
-                ff = os.path.splitext(file_name)  # To Access File names :type: <tuple>
+                new_name = os.path.split(file_name)  # Splitting filename :type: <list>
+                ff = os.path.splitext(file_name)  # Splitting filename :type: <list>
                 r = ff[0].split("\\")
-                os.rename(file_name, fr"{new_name[0]}\{r[-1]}" + '.mp3')  # To change File  format to mp3
+                os.rename(file_name, fr"{new_name[0]}\{r[-1]}" + '.mp3')  # Converting to .mp3
 
                 self.download_button.place(x=4000, y=2000)  # Remove Button from Screen
                 self.download_now_label.config(text="STATUS: COMPLETE")  # Changes Label Configuration after Download is Complete
@@ -292,3 +292,4 @@ if __name__ == "__main__":
     window.resizable(False, False)
     x = MusicWindow(window)
     window.mainloop()
+
