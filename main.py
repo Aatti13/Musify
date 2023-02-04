@@ -8,6 +8,7 @@ from pytube import YouTube
 from datetime import date
 from pathlib import Path
 from tkinter import messagebox
+import os
 
 
 # Initialising Class Music Window
@@ -73,7 +74,7 @@ class MusicWindow:
 
                 dd = size
 
-                file_size = dd.filesize_mb # Getting File Size
+                file_size = dd.filesize_mb  # Getting File Size
 
                 if 1 <= file_size < 1000:
                     file_size = f"{int(dd.filesize_mb)} MB"  # Shows File size in Megabytes
@@ -123,11 +124,16 @@ class MusicWindow:
                 audio = p.streams.get_by_itag(251)  # Searching for Stream by itag
                 first_download = audio
                 downloads_path = str(Path.home() / "Music")  # Getting path to Music Folder of Device
-                dir_file_path = f"{downloads_path}/Downloaded"  # Create file path for download
-                first_download.download(dir_file_path)  # To download the YouTube Audio
+                dir_file_path = fr"{downloads_path}\Downloaded"  # Create file path for download
+                file_name = first_download.download(dir_file_path)  # To download the YouTube Audio
+                new_name = os.path.split(file_name)  # To Access File names :type: <tuple>
+                ff = os.path.splitext(file_name)  # To Access File names :type: <tuple>
+                r = ff[0].split("\\")
+                os.rename(file_name, fr"{new_name[0]}\{r[-1]}" + '.mp3')  # To change File  format to mp3
 
                 self.download_button.place(x=4000, y=2000)  # Remove Button from Screen
                 self.download_now_label.config(text="STATUS: COMPLETE")  # Changes Label Configuration after Download is Complete
+
                 self.button_flag = True
             else:
                 messagebox.showerror("Musify", "STATUS: ERROR")  # To show Errors
