@@ -63,7 +63,7 @@ The installer converts file from audio/webm to .mp3
 
 
 # Summary
-- Musify (just a temporary name pls dont sue me Spotify) is used for easy downloading of you favourite music and audio files.
+- Musify (just a temporary name pls dont sue me Spotify) is used for downloading your favourite music and audio files.
  
 - This is completely free and no API key required.
 
